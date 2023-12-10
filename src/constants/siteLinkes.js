@@ -1,1 +1,1 @@
-export const siteLinks = [ 'Home','About']
+export const siteLinks = [ 'Voting','Home']

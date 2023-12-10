@@ -1,37 +1,46 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
 import { siteLinks } from './constants/siteLinkes';
 import HomePage from './pages/HomePage/HomePage';
-import AboutPage from './pages/AboutPage/AboutPage';
+import VotingPage from './pages/VotingPage/VotingPage';
 import { ModeContext } from './components/ModeContext';
+import LoginPage from './pages/LoginPage/LoginPage';
+import axios from 'axios';
+import { LoginContext } from './components/LoginContext';
 // import ModeContext from './components/ModeContext';
 // import ModeProvider from './components/ModeContext';
 
 
-const [homePage, aboutPage] = siteLinks
+const [votingPage, homePage] = siteLinks
 const [dayMode, nightMode] = ['day', 'night'];
 
 function App() {
-  const { mode, setMode } = useContext(ModeContext);
-
-
+  const [mode, setMode] = useContext(ModeContext);
+  const [Login, setLogin] = useContext(LoginContext);
+  const [usersData, setUsersData] = useState(null);
   const [currentPage, setCurrentPage] = useState("Home");
   const handleChangePage = (pageName) => {
     setCurrentPage(pageName);
   }
+  useEffect(() => {
+    axios.get('https://657604270febac18d40395ec.mockapi.io/users')
+      .then((respons) => {
+        setUsersData(respons.data);
+      })
+  }, []);
+
+
+
 
   return (
-
     <>
-      {/* <ModeProvider> */}
-      <Header handleChangePage={handleChangePage} />
+      {/* {(usersData !== null) && console.log(usersData[0])} */}
+      {!Login && <LoginPage usersData={usersData}></LoginPage>}
 
-      {currentPage === homePage && <HomePage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
-      {currentPage === aboutPage && <AboutPage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
-
-
-      {/* </ModeProvider> */}
+      {Login && <Header handleChangePage={handleChangePage} />}
+      {Login && currentPage === homePage && <HomePage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
+      {Login && currentPage === votingPage && <VotingPage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
 
 
     </>
