@@ -3,7 +3,7 @@ import './TeamCard.css'
 import { UserContext } from '../Contexts/UserContext';
 import { SelectedTeamContext } from '../Contexts/SelectedTeamContext';
 import { VoteStatusContext } from '../Contexts/VoteStatusContext';
-import {usersUrl ,teamsUrl} from '../../constants/teamsUsersData'
+import { usersUrl, teamsUrl } from '../../constants/teamsUsersData'
 import axios from 'axios';
 const [noVote, waitingConfirm, voteConfirmed] = ["noVote", "waiting", "confirm"];
 
@@ -22,7 +22,7 @@ function TeamCard({ team }) {
   function handelConfirmVote() {
     //update user using axios
     axios
-      .put(`${usersUrl}/${currentUser.id}`,   {
+      .put(`${usersUrl}/${currentUser.id}`, {
         "name": currentUser.name,
         "email": currentUser.email,
         "vote": true,
@@ -36,15 +36,15 @@ function TeamCard({ team }) {
       });
     //update team votes using axios
     axios
-    .put(`${teamsUrl}/${team.id}`,     {
-      "name": team.name,
-      "votesNumber": team.votesNumber+1,
-      "img": team.img,
-      "id": team.id
-    })
-    .then((response) => {
-      setPost(response.data);
-    });
+      .put(`${teamsUrl}/${team.id}`, {
+        "name": team.name,
+        "votesNumber": team.votesNumber + 1,
+        "img": team.img,
+        "id": team.id
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
 
     setVoteStatus(voteConfirmed);
     setVotesNumber(votesNumber => votesNumber + 1);
