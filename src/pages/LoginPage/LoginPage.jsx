@@ -32,11 +32,9 @@ function LoginPage({ usersData }) {
                 } else {
                     setVoteStatus(noVote);
                 }
-
                 console.log(usersData);
                 console.log("Login succeseed!");
                 console.log(`user= ${user.email}`);
-
                 break;
             }
         }

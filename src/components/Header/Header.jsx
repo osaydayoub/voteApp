@@ -1,5 +1,5 @@
 import './Header.css'
-import { siteLinks } from '../../constants/siteLinkes'
+import { siteLinks, adminSiteLinks } from '../../constants/siteLinkes'
 import { useContext } from 'react';
 import { UserContext } from '../Contexts/UserContext';
 import { ModeContext } from '../Contexts/ModeContext';
@@ -26,12 +26,23 @@ export default function Header({ classList, handleChangePage, buttonChildren }) 
             className={(mode === dayMode) ? `Header-day-mode Header` : `Header-night-mode Header`}>
             <h3>Champions Vote</h3>
             <h3>{currentUser.name}</h3>
-            <div className='link-container'>
-                {siteLinks.map((pageName, index) => {
-                    return <span key={index} onClick={() => handleChangePage(pageName)} >{pageName}</span>
-                })
-                }
-            </div>
+            {currentUser.admin &&
+                <div className='link-container'>
+                    {adminSiteLinks.map((pageName, index) => {
+                        return <span key={index} onClick={() => handleChangePage(pageName)} >{pageName}</span>
+                    })
+                    }
+                </div>
+            }
+            {!currentUser.admin&&
+                <div className='link-container'>
+                    {siteLinks.map((pageName, index) => {
+                        return <span key={index} onClick={() => handleChangePage(pageName)} >{pageName}</span>
+                    })
+                    }
+                </div>
+            }
+
             <button
                 className={(mode === dayMode) ? "btn-day" : "btn-night"}
                 onClick={handleClick}>
