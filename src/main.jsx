@@ -7,22 +7,25 @@ import LoginProvider from './components/Contexts/LoginContext.jsx'
 import UserProvider from './components/Contexts/UserContext.jsx'
 import SelectedTeamProvider from './components/Contexts/SelectedTeamContext.jsx'
 import VoteStatusProvider from './components/Contexts/VoteStatusContext.jsx'
+import VotesNumberProvider from './components/Contexts/VotesNumberContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-  <React.StrictMode>
+  // <React.StrictMode>
     <ModeProvider>
       <LoginProvider>
         <UserProvider>
           <VoteStatusProvider>
             <SelectedTeamProvider>
-              <App />
+              <VotesNumberProvider>
+                <App />
+              </VotesNumberProvider>
             </SelectedTeamProvider>
           </VoteStatusProvider>
         </UserProvider>
       </LoginProvider>
     </ModeProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 
 
 )
