@@ -1,5 +1,5 @@
 .card-container {
-    width: 320px;
+    width: 280px;
     padding: 10px;
     text-align: center;
     border: solid 3px rgb(43, 101, 236);
@@ -10,14 +10,14 @@
 }
 
 .card-container:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     border: none;
     background-color: rgb(43, 101, 236, 0.8);
     color: white;
 }
 
 .card-img {
-    width: 280px;
-    height: 280px;
+    width: 200px;
+    height: 200px;
     border: solid white 2px;
 }

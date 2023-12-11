@@ -4,12 +4,10 @@ import Header from './components/Header/Header'
 import { siteLinks } from './constants/siteLinkes';
 import HomePage from './pages/HomePage/HomePage';
 import VotingPage from './pages/VotingPage/VotingPage';
-import { ModeContext } from './components/ModeContext';
+import { ModeContext } from './components/Contexts/ModeContext';
 import LoginPage from './pages/LoginPage/LoginPage';
 import axios from 'axios';
-import { LoginContext } from './components/LoginContext';
-// import ModeContext from './components/ModeContext';
-// import ModeProvider from './components/ModeContext';
+import { LoginContext } from './components/Contexts/LoginContext';
 
 
 const [votingPage, homePage] = siteLinks
@@ -19,7 +17,7 @@ function App() {
   const [mode, setMode] = useContext(ModeContext);
   const [Login, setLogin] = useContext(LoginContext);
   const [usersData, setUsersData] = useState(null);
-  const [currentPage, setCurrentPage] = useState("Home");
+  const [currentPage, setCurrentPage] = useState("Voting");
   const handleChangePage = (pageName) => {
     setCurrentPage(pageName);
   }

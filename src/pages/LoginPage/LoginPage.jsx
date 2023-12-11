@@ -1,11 +1,18 @@
 import React, { useState, useContext } from 'react'
 import './LoginPage.css'
 import championsImg from '../../assets/UEFA_Champions_League.png'
-import { LoginContext } from '../../components/LoginContext';
+import { LoginContext } from '../../components/Contexts/LoginContext';
+import { UserContext } from '../../components/Contexts//UserContext';
+import { VoteStatusContext } from '../../components/Contexts/VoteStatusContext';
 function LoginPage({ usersData }) {
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [Login, setLogin] = useContext(LoginContext);
+    const [currentUser, setCurrentUser] = useContext(UserContext);
+    const [voteStatus, setVoteStatus] = useContext(VoteStatusContext);
+    const [noVote, waitingConfirm, voteConfirmed] = ["noVote", "waiting", "confirm"];
+
+
     const handleAddEmail = (e) => {
         setEmailInput(e.target.value);
     }
@@ -16,13 +23,30 @@ function LoginPage({ usersData }) {
 
     const handleLogin = (e, usersData) => {
         e.preventDefault();
-        usersData.map((user) => {
+        for (const user of usersData) {
             if (user.email === emailInput && user.password === passwordInput) {
                 setLogin((true));
+                setCurrentUser(user);
+                if (user.vote) {
+                    setVoteStatus(voteConfirmed);
+                } else {
+                    setVoteStatus(noVote);
+                }
+
                 console.log(usersData);
                 console.log("Login succeseed!");
+                console.log(`user= ${user.email}`);
+
+                break;
             }
-        })
+        }
+        // usersData.map((user) => {
+        //     if (user.email === emailInput && user.password === passwordInput) {
+        //         setLogin((true));
+        //         console.log(usersData);
+        //         console.log("Login succeseed!");
+        //     }
+        // })
         console.log(Login);
     }
     return (

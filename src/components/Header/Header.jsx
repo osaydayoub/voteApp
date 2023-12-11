@@ -1,12 +1,15 @@
 import './Header.css'
 import { siteLinks } from '../../constants/siteLinkes'
 import { useContext } from 'react';
-import { ModeContext } from '../ModeContext';
+import { UserContext } from '../Contexts/UserContext';
+import { ModeContext } from '../Contexts/ModeContext';
 
 const [dayMode, nightMode] = ['day', 'night'];
 
 export default function Header({ classList, handleChangePage, buttonChildren }) {
-    const { mode, setMode } = useContext(ModeContext);
+    const [mode, setMode] = useContext(ModeContext);
+    const [currentUser, setCurrentUser] = useContext(UserContext);
+
 
     function handleClick() {
         if (mode === dayMode) {
@@ -21,7 +24,8 @@ export default function Header({ classList, handleChangePage, buttonChildren }) 
     return (
         <div
             className={(mode === dayMode) ? `Header-day-mode Header` : `Header-night-mode Header`}>
-                <h3>Champions Vote</h3>
+            <h3>Champions Vote</h3>
+            <h3>{currentUser.name}</h3>
             <div className='link-container'>
                 {siteLinks.map((pageName, index) => {
                     return <span key={index} onClick={() => handleChangePage(pageName)} >{pageName}</span>
@@ -37,5 +41,3 @@ export default function Header({ classList, handleChangePage, buttonChildren }) 
     )
 }
 
-// classList={(mode === dayMode) ? `Header-day-mode` : `Header-night-mode`}
-// buttonChildren={(mode === dayMode) ? "Make Night" : "Make Day"}
