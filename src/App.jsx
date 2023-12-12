@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
 import { adminSiteLinks, siteLinks } from './constants/siteLinkes';
@@ -16,28 +16,19 @@ const [dayMode, nightMode] = ['day', 'night'];
 function App() {
   const [mode, setMode] = useContext(ModeContext);
   const [Login, setLogin] = useContext(LoginContext);
-  const [usersData, setUsersData] = useState(null);
+  
   const [currentPage, setCurrentPage] = useState("Voting");
   const handleChangePage = (pageName) => {
     setCurrentPage(pageName);
   }
-  useEffect(() => {
-    axios.get('https://657604270febac18d40395ec.mockapi.io/users')
-      .then((respons) => {
-        setUsersData(respons.data);
-      })
-  }, []);
-
-
-
 
   return (
     <>
       {/* {(usersData !== null) && console.log(usersData[0])} */}
-      {!Login && <LoginPage usersData={usersData}></LoginPage>}
-
+      {!Login && <LoginPage handleChangePage={setCurrentPage}></LoginPage>}
       {Login && <Header handleChangePage={handleChangePage} />}
-      {Login && currentPage === adminPage && <AdminPage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
+      {Login && currentPage === adminPage &&
+        <AdminPage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
       {Login && currentPage === votingPage && <VotingPage pageName={(mode === dayMode) ? `day-mode-page` : `night-mode-page`} />}
 
 

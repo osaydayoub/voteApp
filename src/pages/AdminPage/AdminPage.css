@@ -1,0 +1,16 @@
+.admin-page {
+    gap: 25px;
+}
+
+.admin-user-conntiner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-users-container {
+    border: solid white 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}

@@ -1,16 +1,27 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext , useEffect} from 'react'
 import './LoginPage.css'
 import championsImg from '../../assets/UEFA_Champions_League.png'
 import { LoginContext } from '../../components/Contexts/LoginContext';
 import { UserContext } from '../../components/Contexts//UserContext';
 import { VoteStatusContext } from '../../components/Contexts/VoteStatusContext';
-function LoginPage({ usersData }) {
+import { GrLogin } from "react-icons/gr";
+import { siteLinks } from '../../constants/siteLinkes';
+import axios from 'axios';
+function LoginPage({ handleChangePage }) {
+    const [usersData, setUsersData] = useState(null);
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [Login, setLogin] = useContext(LoginContext);
     const [currentUser, setCurrentUser] = useContext(UserContext);
     const [voteStatus, setVoteStatus] = useContext(VoteStatusContext);
     const [noVote, waitingConfirm, voteConfirmed] = ["noVote", "waiting", "confirm"];
+
+    useEffect(() => {
+        axios.get('https://657604270febac18d40395ec.mockapi.io/users')
+          .then((respons) => {
+            setUsersData(respons.data);
+          })
+      }, []);
 
 
     const handleAddEmail = (e) => {
@@ -38,14 +49,8 @@ function LoginPage({ usersData }) {
                 break;
             }
         }
-        // usersData.map((user) => {
-        //     if (user.email === emailInput && user.password === passwordInput) {
-        //         setLogin((true));
-        //         console.log(usersData);
-        //         console.log("Login succeseed!");
-        //     }
-        // })
-        console.log(Login);
+        //TODO
+        handleChangePage(siteLinks[0]);
     }
     return (
         <div className='LoginPage'>
@@ -72,7 +77,7 @@ function LoginPage({ usersData }) {
                         />
                     </div>
                     <div>
-                        <button type='submit'>login</button>
+                        <button type='submit'>login<GrLogin /></button>
                     </div>
                 </form>
             </div>

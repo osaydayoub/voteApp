@@ -65,6 +65,15 @@ function TeamCard({ team }) {
     console.log(team.votesNumber);
     console.log(updateArray((VotesNumberArray), getIndex(team.id), 1));
     console.log(VotesNumberArray);
+    // setCurrentUser({
+    //   "name": currentUser.name,
+    //   "email": currentUser.email,
+    //   "vote": true,
+    //   "password": currentUser.password,
+    //   "admin": currentUser.admin,
+    //   "voteForTeam": currentUser.voteForTeam,
+    //   "id": currentUser.id
+    // })
   }
 
   function handelCancleVote() {
@@ -116,7 +125,7 @@ function TeamCard({ team }) {
 
     setVoteStatus(noVote);
     console.log('handelChangeVote');
- 
+
 
   }
 
