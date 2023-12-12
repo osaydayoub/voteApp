@@ -14,3 +14,9 @@
     gap: 15px;
 
 }
+
+.admin-team-conntiner{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
