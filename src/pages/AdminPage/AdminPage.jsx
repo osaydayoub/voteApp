@@ -32,7 +32,7 @@ function AdminPage({ pageName }) {
                 <div key={user.id} className='admin-user-conntiner'>
                   <p>{user.name}</p>
                   <p>{user.email}</p>
-                  {(user.vote) ? <p>Voted</p> : <p>Not Voted</p>}
+                  {(user.vote) ? <p style={{color: "green",  fontWeight: 'bold'}}>Voted</p> : <p style={{color: "red"}}>Not Voted</p>}
                 </div>
               )
             })
