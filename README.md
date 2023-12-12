@@ -1,8 +1,17 @@
-# React + Vite
+# Champions Vote
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Basic Application Setup: 
+- Build a voting application in React. 
+- Include Login, Voting, and Admin Pages. 
+- Use HTML, CSS, JavaScript, and React. 
 
-Currently, two official plugins are available:
+ 
+2. Login Page: 
+- Create a form for users to log in with email and password. 
+- Validate login credentials against the mockapi database. 
+- To login as admin use :
+- Email:osaydayoub@gamil.com
+-Password:123456
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. Voting Page: 
+ Display user’s name and Team voting options . 
