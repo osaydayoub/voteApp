@@ -10,8 +10,9 @@
 - Create a form for users to log in with email and password. 
 - Validate login credentials against the mockapi database. 
 - To login as admin use :
-- Email:osaydayoub@gamil.com
--Password:123456
+- Email: osaydayoub@gamil.com
+- Password: 123456
+- Website: https://champions-vote.netlify.app/
 
 3. Voting Page: 
  Display user’s name and Team voting options . 
